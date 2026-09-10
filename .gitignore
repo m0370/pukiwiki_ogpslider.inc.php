@@ -1,0 +1,18 @@
+# 公開対象はこのリポジトリ内の実装・説明書・汎用テストのみ。
+.DS_Store
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+*.bak
+*~
+cache/
+wiki/
+attach/
+dist/
+node_modules/
+.claude/
+.codex/
