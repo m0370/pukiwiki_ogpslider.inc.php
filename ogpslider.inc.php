@@ -83,11 +83,10 @@ function plugin_ogpslider_convert()
     // HTMLキャッシュに保存されても各リストが単独で表示・初期化できるようにする。
     return plugin_ogpslider_style() . "\n" .
         '<section class="ogpslider" aria-label="' . $label . '">' .
-        '<div class="ogpslider-toolbar"><span>横にスクロールして読む</span>' .
         '<div class="ogpslider-controls" hidden>' .
         '<button type="button" data-direction="-1" aria-label="前のカードへ">&#8592;</button>' .
         '<button type="button" data-direction="1" aria-label="次のカードへ">&#8594;</button>' .
-        '</div></div>' .
+        '</div>' .
         '<ul class="ogpslider-list" tabindex="0" aria-label="' . $label . 'の一覧（左右キーでスクロール）" role="list">' .
         $items . '</ul></section>' . plugin_ogpslider_script();
 }
@@ -163,12 +162,11 @@ function plugin_ogpslider_style(): string
 {
     return <<<'HTML'
 <style>
-.ogpslider{box-sizing:border-box;width:100%;min-width:0;max-width:100%;margin:1.5em 0;padding:0 8px;color:#222}
-.ogpslider .ogpslider-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;margin-bottom:12px;font-size:12px;color:#666}
-.ogpslider .ogpslider-controls{display:flex;gap:8px}
+.ogpslider{--ogpslider-card-width:280px;position:relative;box-sizing:border-box;width:100%;min-width:0;max-width:100%;margin:1.5em 0;padding:0 8px;color:#222}
+.ogpslider .ogpslider-controls{position:absolute;z-index:2;top:4px;right:10px;left:10px;display:flex;align-items:center;justify-content:space-between;height:calc(var(--ogpslider-card-width) * 9 / 16);pointer-events:none}
 .ogpslider .ogpslider-controls[hidden]{display:none}
-.ogpslider .ogpslider-controls button{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid #ddd;border-radius:50%;background:#fff;color:#222;font:22px/1 sans-serif;cursor:pointer}
-.ogpslider .ogpslider-controls button:disabled{opacity:.3;cursor:default}
+.ogpslider .ogpslider-controls button{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid #d8dddb;border-radius:50%;background:rgba(255,255,255,.96);box-shadow:0 2px 8px rgba(0,0,0,.16);color:#222;font:22px/1 sans-serif;cursor:pointer;opacity:1;pointer-events:auto;touch-action:manipulation;transition:opacity .15s ease,background-color .15s ease,border-color .15s ease}
+.ogpslider .ogpslider-controls button:disabled{opacity:0;pointer-events:none;cursor:default}
 .ogpslider .ogpslider-controls button:not(:disabled):hover{background:#f2f5f4;border-color:#888}
 .ogpslider ul.ogpslider-list{display:flex;flex-wrap:nowrap;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;list-style:none;width:100%;max-width:100%;box-sizing:border-box;margin:0;padding:4px 2px 14px;scrollbar-width:thin;scrollbar-color:#b7c3bf #f3f5f4}
 .ogpslider .ogpslider-list>.ogpslider-item{box-sizing:border-box;flex:0 0 280px;min-width:0;max-width:86%;margin:0;padding:0;list-style:none;scroll-snap-align:start}
@@ -184,9 +182,10 @@ function plugin_ogpslider_style(): string
 .ogpslider .ogpslider-noimage>.ogp:before{content:"画像なし";display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;margin-bottom:12px;border-radius:10px;background:linear-gradient(135deg,#f0f4f2,#e4ebe8);color:#65736d;font-size:14px;font-weight:400}
 .ogpslider :focus-visible{outline:2px solid #087f69;outline-offset:2px}
 .ogpslider .ogp:focus-within{outline:2px solid #087f69;outline-offset:2px;border-radius:10px}
-@media(max-width:600px){.ogpslider ul.ogpslider-list{gap:14px}.ogpslider .ogpslider-list>.ogpslider-item{flex-basis:240px}}
-@media (hover:none) and (pointer:coarse){.ogpslider .ogpslider-controls{display:none}}
-@media print{.ogpslider .ogpslider-toolbar{display:none}.ogpslider ul.ogpslider-list{flex-wrap:wrap;overflow:visible}.ogpslider .ogpslider-item{break-inside:avoid}}
+@media (hover:hover) and (pointer:fine){.ogpslider .ogpslider-controls button:not(:disabled){opacity:0;pointer-events:none}.ogpslider:hover .ogpslider-controls button:not(:disabled),.ogpslider:focus-within .ogpslider-controls button:not(:disabled){opacity:1;pointer-events:auto}}
+@media(max-width:600px){.ogpslider{--ogpslider-card-width:240px}.ogpslider ul.ogpslider-list{gap:14px}.ogpslider .ogpslider-list>.ogpslider-item{flex-basis:var(--ogpslider-card-width)}}
+@media(prefers-reduced-motion:reduce){.ogpslider .ogpslider-controls button{transition:none}}
+@media print{.ogpslider .ogpslider-controls{display:none}.ogpslider ul.ogpslider-list{flex-wrap:wrap;overflow:visible}.ogpslider .ogpslider-item{break-inside:avoid}}
 </style>
 HTML;
 }

@@ -49,6 +49,13 @@ $html = plugin_ogpslider_convert('max=2', $urls[0], $urls[0], $urls[1], $urls[2]
 check($calls === array_slice($urls, 0, 2), 'deduplicate, order, no fetch past max');
 check(substr_count($html, '<li class="ogpslider-item') === 2, 'two cards');
 check((bool) preg_match('/\.ogpslider\{[^}]*padding:0 8px(?:;|})/', $html), 'eight pixel horizontal padding');
+check(strpos($html, '横にスクロールして読む') === false, 'instructional text removed');
+check(strpos($html, 'ogpslider-toolbar') === false, 'toolbar removed');
+check((bool) preg_match('/<div class="ogpslider-controls"[^>]*>.*<\/div><ul class="ogpslider-list"/s', $html), 'overlay controls precede list');
+check((bool) preg_match('/\.ogpslider \.ogpslider-controls\{[^}]*position:absolute[^}]*z-index:2/', $html), 'controls overlay cards');
+check(strpos($html, '@media (hover:hover) and (pointer:fine)') !== false && strpos($html, '.ogpslider:focus-within .ogpslider-controls button:not(:disabled)') !== false, 'mouse hover and keyboard focus reveal controls');
+check(strpos($html, '@media (hover:none)') === false && strpos($html, 'touch-action:manipulation') !== false, 'touch controls remain visible and tappable');
+check(strpos($html, '@media(prefers-reduced-motion:reduce)') !== false, 'reduced motion disables control transition');
 check(strpos($html, '>新しい記事<span') !== false, 'shorten local title');
 check(strpos($html, 'alt="新しい記事"') !== false, 'shorten image alt');
 $calls = []; plugin_ogpslider_convert(...$urls); check(count($calls) === 6, 'default max');
