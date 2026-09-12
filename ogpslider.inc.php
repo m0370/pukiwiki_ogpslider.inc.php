@@ -1,6 +1,6 @@
 <?php
 /**
- * PukiWiki OGP Slider v1.0.1
+ * PukiWiki OGP Slider v1.1.0
  * #ogpslider(max=6,URL1,URL2,...) / #ogpslider(recent,max=6,prefix=日記/)
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
