@@ -1,6 +1,6 @@
 <?php
 /**
- * PukiWiki OGP Slider v1.0.0
+ * PukiWiki OGP Slider v1.0.1
  * #ogpslider(max=6,URL1,URL2,...) / #ogpslider(recent,max=6,prefix=日記/)
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -163,7 +163,7 @@ function plugin_ogpslider_style(): string
 {
     return <<<'HTML'
 <style>
-.ogpslider{box-sizing:border-box;width:100%;min-width:0;max-width:100%;margin:1.5em 0;color:#222}
+.ogpslider{box-sizing:border-box;width:100%;min-width:0;max-width:100%;margin:1.5em 0;padding:0 8px;color:#222}
 .ogpslider .ogpslider-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;margin-bottom:12px;font-size:12px;color:#666}
 .ogpslider .ogpslider-controls{display:flex;gap:8px}
 .ogpslider .ogpslider-controls[hidden]{display:none}

@@ -48,6 +48,7 @@ $urls = array_map(fn($n) => 'https://example.com/article' . $n, range(1, 22));
 $html = plugin_ogpslider_convert('max=2', $urls[0], $urls[0], $urls[1], $urls[2]);
 check($calls === array_slice($urls, 0, 2), 'deduplicate, order, no fetch past max');
 check(substr_count($html, '<li class="ogpslider-item') === 2, 'two cards');
+check((bool) preg_match('/\.ogpslider\{[^}]*padding:0 8px(?:;|})/', $html), 'eight pixel horizontal padding');
 check(strpos($html, '>新しい記事<span') !== false, 'shorten local title');
 check(strpos($html, 'alt="新しい記事"') !== false, 'shorten image alt');
 $calls = []; plugin_ogpslider_convert(...$urls); check(count($calls) === 6, 'default max');
