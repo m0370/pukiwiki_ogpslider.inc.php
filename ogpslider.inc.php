@@ -163,12 +163,12 @@ function plugin_ogpslider_style(): string
     return <<<'HTML'
 <style>
 .ogpslider{--ogpslider-card-width:280px;position:relative;box-sizing:border-box;width:100%;min-width:0;max-width:100%;margin:1.5em 0;padding:0 8px;color:#222}
-.ogpslider .ogpslider-controls{position:absolute;z-index:2;top:4px;right:10px;left:10px;display:flex;align-items:center;justify-content:space-between;height:calc(var(--ogpslider-card-width) * 9 / 16);pointer-events:none}
+.ogpslider .ogpslider-controls{position:absolute;z-index:2;top:6px;right:10px;left:10px;display:flex;align-items:center;justify-content:space-between;height:calc(var(--ogpslider-card-width) * 9 / 16);pointer-events:none}
 .ogpslider .ogpslider-controls[hidden]{display:none}
 .ogpslider .ogpslider-controls button{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid #d8dddb;border-radius:50%;background:rgba(255,255,255,.96);box-shadow:0 2px 8px rgba(0,0,0,.16);color:#222;font:22px/1 sans-serif;cursor:pointer;opacity:1;pointer-events:auto;touch-action:manipulation;transition:opacity .15s ease,background-color .15s ease,border-color .15s ease}
 .ogpslider .ogpslider-controls button:disabled{opacity:0;pointer-events:none;cursor:default}
 .ogpslider .ogpslider-controls button:not(:disabled):hover{background:#f2f5f4;border-color:#888}
-.ogpslider ul.ogpslider-list{display:flex;flex-wrap:nowrap;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;list-style:none;width:100%;max-width:100%;box-sizing:border-box;margin:0;padding:4px 2px 14px;scrollbar-width:thin;scrollbar-color:#b7c3bf #f3f5f4}
+.ogpslider ul.ogpslider-list{display:flex;flex-wrap:nowrap;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-padding-inline:6px;list-style:none;width:100%;max-width:100%;box-sizing:border-box;margin:0;padding:6px 6px 14px;scrollbar-width:thin;scrollbar-color:#b7c3bf #f3f5f4}
 .ogpslider .ogpslider-list>.ogpslider-item{box-sizing:border-box;flex:0 0 280px;min-width:0;max-width:86%;margin:0;padding:0;list-style:none;scroll-snap-align:start}
 .ogpslider .ogpslider-item>.ogp{box-sizing:border-box;position:relative;display:block;float:none;width:100%;height:100%;min-height:0;max-width:none;max-height:none;margin:0;padding:0;border:0;border-radius:0;overflow:visible;box-shadow:none;word-break:normal;overflow-wrap:anywhere}
 .ogpslider .ogpslider-item .ogp-img-box{float:none;width:100%;height:auto;aspect-ratio:16/9;margin:0 0 12px;overflow:hidden;border-radius:10px;background:#f0f3f2}
