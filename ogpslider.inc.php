@@ -76,8 +76,6 @@ function plugin_ogpslider_convert()
             $card = plugin_ogp_fallback_link($url);
         }
         $card = plugin_ogpslider_card_title($card, $url);
-        // スライダー内のカードは同じタブで開く。
-        $card = str_replace(' target="_blank"', '', $card);
         $noimage = strpos($card, '<img ') === false ? ' ogpslider-noimage' : '';
         $items .= '<li class="ogpslider-item' . $noimage . '">' . $card . '</li>';
     }
